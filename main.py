@@ -22,17 +22,12 @@ app.include_router(router_cash_tally, prefix="/api")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:4001",
-        "http://192.168.100.32:4001",
-        "http://localhost:3000",
-        "http://localhost:4000",
-        "http://127.0.0.1:4000",
-        "http://192.168.100.14:8002",
-        "http://localhost:8002",
-        "http://192.168.100.14:8003",
-        "http://localhost:8003",
-        "http://localhost:9005",  # Self
-        "http://127.0.0.1:9005",
+        "https://bleu-pos-tau.vercel.app",
+        "https://bleu-ims-beta.vercel.app",
+        "https://authservices-npr8.onrender.com",
+        "https://bleu-stockservices.onrender.com",
+        "https://ims-restockservices.onrender.com",
+        "https://blockchainservices.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],

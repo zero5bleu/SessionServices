@@ -13,14 +13,14 @@ from database import get_db_connection
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
-AUTH_SERVICE_ME_URL = "http://localhost:4000/auth/users/me"
-BLOCKCHAIN_LOG_URL = "http://localhost:9005/blockchain/log"
+AUTH_SERVICE_ME_URL = "https://authservices-npr8.onrender.com/auth/users/me"
+BLOCKCHAIN_LOG_URL = "https://blockchainservices.onrender.com/blockchain/log"
 
 # =============================================================================
 # ROUTER SETUP & OAUTH2 SCHEME
 # =============================================================================
 router = APIRouter(prefix="/session", tags=["Cashier Sessions"])
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="http://localhost:4000/auth/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="https://authservices-npr8.onrender.com/auth/token")
 
 # =============================================================================
 # AUTHORIZATION HELPER
@@ -317,7 +317,7 @@ async def get_session_summary(
             # Get cashier full name
             try:
                 cashier_response = await client.get(
-                    f"http://localhost:4000/users/employee_name?username={cashier_name}",
+                    f"https://authservices-npr8.onrender.com/users/employee_name?username={cashier_name}",
                     headers={"Authorization": f"Bearer {token}"}
                 )
                 if cashier_response.status_code == 200:
@@ -330,7 +330,7 @@ async def get_session_summary(
             if checked_by:
                 try:
                     manager_response = await client.get(
-                        f"http://localhost:4000/users/employee_name?username={checked_by}",
+                        f"https://authservices-npr8.onrender.com/users/employee_name?username={checked_by}",
                         headers={"Authorization": f"Bearer {token}"}
                     )
                     if manager_response.status_code == 200:

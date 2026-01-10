@@ -20,13 +20,13 @@ from database import get_db_connection
 
 # --- Auth Configuration ---
 from fastapi.security import OAuth2PasswordBearer
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="http://127.0.0.1:4000/auth/token")
-USER_SERVICE_ME_URL = "http://localhost:4000/auth/users/me"
-USER_SERVICE_VERIFY_PIN_URL = "http://localhost:4000/users/verify-pin"
-USER_SERVICE_EMPLOYEE_NAME_URL = "http://127.0.0.1:4000/users/employee_name"
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="https://authservices-npr8.onrender.com/auth/token")
+USER_SERVICE_ME_URL = "https://authservices-npr8.onrender.com/auth/users/me"
+USER_SERVICE_VERIFY_PIN_URL = "https://authservices-npr8.onrender.com/users/verify-pin"
+USER_SERVICE_EMPLOYEE_NAME_URL = "https://authservices-npr8.onrender.com/users/employee_name"
 
 # --- Blockchain Configuration ---
-BLOCKCHAIN_LOG_URL = "http://localhost:9005/blockchain/log"
+BLOCKCHAIN_LOG_URL = "https://blockchainservices.onrender.com/blockchain/log"
 
 # --- Define the new router ---
 router_cash_tally = APIRouter(

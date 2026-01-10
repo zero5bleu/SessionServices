@@ -15,10 +15,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-app.include_router(session_router, prefix="/api")
-app.include_router(router_cash_tally, prefix="/api") 
-
-
+# Add CORS BEFORE including routers
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -32,16 +29,19 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
+
+# Include routers AFTER middleware
+app.include_router(session_router, prefix="/api")
+app.include_router(router_cash_tally, prefix="/api")
 
 @app.get("/", tags=["Health Check"])
 def read_root():
     return {"status": "ok", "message": "Session and Tally Service is running."}
 
-
 if __name__ == "__main__":
     import uvicorn
-    
     print("--- Starting Session and Tally Service on http://0.0.0.0:9001 ---")
     print("API docs available at http://127.0.0.1:9001/docs")
     uvicorn.run("main:app", port=9001, host="0.0.0.0", reload=True)

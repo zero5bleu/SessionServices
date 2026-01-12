@@ -24,7 +24,7 @@ app.add_middleware(
         "https://authservices-npr8.onrender.com",        "http://192.168.100.14:8002",
         "https://bleu-stockservices.onrender.com",
         "https://ims-restockservices.onrender.com",
-        "https://blockchainservices.onrender.com",  ]
+        "https://blockchainservices.onrender.com",  ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

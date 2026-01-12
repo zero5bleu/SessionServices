@@ -1,9 +1,10 @@
 FROM python:3.12-slim-bullseye
 
-# Set environment variables to keep Python quiet and clean
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
@@ -13,10 +14,6 @@ RUN apt-get update && apt-get install -y \
     g++ \
     unixodbc \
     unixodbc-dev \
-    libpq-dev \
-    libsasl2-dev \
-    libssl-dev \
-    libffi-dev \
     && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft-archive-keyring.gpg \
     && echo "deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/debian/11/prod bullseye main" > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
@@ -25,15 +22,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# 1. Copy ONLY requirements first (for Docker layer caching)
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
-
-# 2. Upgrade pip and REMOVE pywin32 from requirements before installing
 RUN pip install --no-cache-dir --upgrade pip && \
-    sed -i '/pywin32/d' requirements.txt && \
     pip install --no-cache-dir -r requirements.txt
 
-# 3. Copy the rest of your app code
+# Copy application code
 COPY . .
 
 EXPOSE 10000

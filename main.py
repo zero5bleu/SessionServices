@@ -18,8 +18,13 @@ app = FastAPI(
 # Add CORS BEFORE including routers
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
-
+    allow_origins=[
+        "https://bleu-pos-tau.vercel.app",
+        "https://bleu-ims-beta.vercel.app",
+        "https://authservices-npr8.onrender.com",        "http://192.168.100.14:8002",
+        "https://bleu-stockservices.onrender.com",
+        "https://ims-restockservices.onrender.com",
+        "https://blockchainservices.onrender.com",  ]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

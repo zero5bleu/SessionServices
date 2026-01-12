@@ -2,7 +2,7 @@ import aioodbc
 
 # database config
 server = 'umsdb.c7qyig0ucelj.ap-southeast-2.rds.amazonaws.com'
-database = 'bleuIMS'
+database = 'POS'
 username = 'bleuadmin'
 password = 'bleuadmin123'
 driver = 'ODBC Driver 17 for SQL Server'

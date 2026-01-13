@@ -123,7 +123,7 @@ async def log_to_blockchain(
     token: str
 ):
     """Log activity to blockchain service (non-blocking)"""
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with httpx.AsyncClient(timeout=150.0) as client:
         try:
             response = await client.post(
                 BLOCKCHAIN_LOG_URL,

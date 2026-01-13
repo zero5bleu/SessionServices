@@ -65,7 +65,7 @@ async def log_to_blockchain(
     import logging
     logger = logging.getLogger(__name__)
     
-    async with httpx.AsyncClient(timeout=30.0) as client:
+    async with httpx.AsyncClient(timeout=150.0) as client:
         try:
             response = await client.post(
                 BLOCKCHAIN_LOG_URL,
